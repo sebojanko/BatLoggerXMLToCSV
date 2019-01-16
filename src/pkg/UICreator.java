@@ -84,17 +84,9 @@ class UICreator {
     }
 
     private void createActions() {
-        openFolderBtn.setOnAction(e -> {
-            openFolder();
-        });
-
-        outputFileBtn.setOnAction(e -> {
-            saveFile();
-        });
-
-        convertBtn.setOnAction(e -> {
-            convert();
-        });
+        openFolderBtn.setOnAction(e -> openFolder());
+        outputFileBtn.setOnAction(e -> saveFile());
+        convertBtn.setOnAction(e -> convert());
     }
 
     private void openFolder() {

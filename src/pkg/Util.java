@@ -13,10 +13,15 @@ import java.util.concurrent.atomic.AtomicReference;
  * janko.sebastian@gmail.com
  */
 class Util {
+    public static final Character SEPARATOR = ';';
+
     static void saveToFile(String coords, AtomicReference<File> saveFile) throws FileNotFoundException {
-        PrintWriter pw = new PrintWriter(new File(saveFile.get().toString()));
-        pw.write("X;Y\n");
+        File f = new File(saveFile.get().toString());
+        PrintWriter pw = new PrintWriter(f);
+
+        pw.write("X" + SEPARATOR + "Y" + System.lineSeparator());
         pw.write(coords);
+
         pw.close();
     }
 

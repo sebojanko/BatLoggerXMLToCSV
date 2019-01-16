@@ -41,11 +41,11 @@ public class XMLVisitor extends SimpleFileVisitor {
         if (prepareCoordsToCSV(readXML(file)).equals(""))
             return "";
         else
-            return prepareCoordsToCSV(readXML(file)) + "\n";
+            return prepareCoordsToCSV(readXML(file)) + System.lineSeparator();
     }
 
     private String prepareCoordsToCSV(String readXML) {
-        return readXML.replace(' ', ',');
+        return readXML.replace(' ', Util.SEPARATOR);
     }
 
     private boolean isExtensionXML(Path file) {
