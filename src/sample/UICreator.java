@@ -21,7 +21,6 @@ import java.util.concurrent.atomic.AtomicReference;
  * Created by sebo on 12/2/18.
  * janko.sebastian@gmail.com
  */
-//TODO REFACTOR SVE
 
 class UICreator {
     private GridPane grid;

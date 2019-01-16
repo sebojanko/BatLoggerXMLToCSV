@@ -61,7 +61,7 @@ public class XMLVisitor extends SimpleFileVisitor {
         return FileVisitResult.CONTINUE;
     }
 
-    public String getCoords() {
+    String getCoords() {
         return coords;
     }
 }

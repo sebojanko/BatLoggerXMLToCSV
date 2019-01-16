@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * Created by sebo on 12/26/18.
  * janko.sebastian@gmail.com
  */
-public class Util {
+class Util {
     static void saveToFile(String coords, AtomicReference<File> saveFile) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(new File(saveFile.get().toString()));
         pw.write("X;Y\n");

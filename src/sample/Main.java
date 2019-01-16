@@ -9,15 +9,13 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    UICreator ui;
-
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        ui = new UICreator(primaryStage);
+        UICreator ui = new UICreator(primaryStage);
 
     }
 }
