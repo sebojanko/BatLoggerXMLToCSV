@@ -93,7 +93,7 @@ class UICreator {
         });
 
         convertBtn.setOnAction(e -> {
-            readCoordinates();
+            convert();
         });
     }
 
@@ -107,15 +107,20 @@ class UICreator {
         setLabelText("File will be saved to: " + getFilename(saveFile));
     }
 
-    private void readCoordinates() {
+    private void convert() {
+        if (arePrereqsSet()) {
+            String coords = readCoordinates();
+            if (!coords.equals("")) {
+                saveCoordinates(coords);
+            }
+        }
+    }
+
+    private String readCoordinates() {
         XMLVisitor xmlVisitor = Util.getXMLVisitor();
         walkFolder(xmlVisitor);
 
-        String coords = xmlVisitor.getCoords();
-
-        if (!coords.equals("")) {
-            saveCoordinates(coords);
-        }
+        return xmlVisitor.getCoords();
     }
 
 
@@ -123,7 +128,7 @@ class UICreator {
         try {
             Util.walkFolder(getPath(readFolder), xmlVisitor);
         } catch (IOException e1) {
-            setLabelText("Error occured while searching for XML files");
+            setLabelText("Error occured while searching for XML files", Colors.ERROR);
         }
     }
 
@@ -131,9 +136,9 @@ class UICreator {
         try {
             Util.saveToFile(coordinates, saveFile);
         } catch (FileNotFoundException e1) {
-            setLabelText("Error occured while writing to file: " + getFilename(saveFile));
+            setLabelText("Error occured while writing to file: " + getFilename(saveFile), Colors.ERROR);
         }
-        setLabelText("Coordinates written to file: " + getFilename(saveFile));
+        setLabelText("Coordinates written to file: " + getFilename(saveFile), Colors.SUCCESS);
     }
 
     private void createScene() {
@@ -141,8 +146,21 @@ class UICreator {
         ((VBox) scene.getRoot()).getChildren().addAll(grid);
         stage.setScene(scene);
         stage.setTitle("BatLogger XML to CSV converter");
+        setLabelText("Select folder with XMLs and output file.");
 
         stage.show();
+    }
+
+    private boolean arePrereqsSet() {
+        if (readFolder.get() == null) {
+            setLabelText("Input folder not specified!", Colors.ERROR);
+            return false;
+        }
+        if (saveFile.get() == null) {
+            setLabelText("Output file not specified!", Colors.ERROR);
+            return false;
+        }
+        return true;
     }
 
     private String getFilename(AtomicReference<File> file) {
@@ -155,5 +173,11 @@ class UICreator {
 
     private void setLabelText(String s) {
         statusLbl.setText(s);
+        statusLbl.setTextFill(Colors.DEFAULT.getColor());
+    }
+
+    private void setLabelText(String s, Colors c) {
+        statusLbl.setText(s);
+        statusLbl.setTextFill(c.getColor());
     }
 }
