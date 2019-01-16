@@ -1,4 +1,4 @@
-package sample;
+package pkg;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;

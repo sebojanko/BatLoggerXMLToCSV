@@ -1,4 +1,4 @@
-package sample;
+package pkg;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
